@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2>Registrar Transacción</h2>
+
+  <form (ngSubmit)="crearTransaccion()" class="row g-3">
+    <div class="col-md-3">
+      <label class="form-label">Número de Cuenta</label>
+      <input type="number" class="form-control" [(ngModel)]="transaction.numeroCuenta" name="numeroCuenta" required>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Fecha Transacción</label>
+      <input type="date" class="form-control" [(ngModel)]="transaction.fechaTransaccion" name="fechaTransaccion" required>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Monto</label>
+      <input type="number" class="form-control" [(ngModel)]="transaction.monto" name="monto" required>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Código Operación</label>
+      <select class="form-select" [(ngModel)]="transaction.codigoOperacion" name="codigoOperacion" required>
+        <!-- <option value="">Seleccione...</option> -->
+        <option *ngFor="let op of operationCodes" [ngValue]="op.codigo">
+          {{ op.descripcion }} ({{ op.tipo }})
+        </option>
+      </select>
+    </div>
+
+    <div class="col-12 d-flex justify-content-end">
+      <button type="submit" class="btn btn-success" [disabled]="loading">
+        {{ loading ? 'Guardando...' : 'Crear Transacción' }}
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="mensaje" class="alert alert-info mt-3">
+    {{ mensaje }}
+  </div>
+</div>

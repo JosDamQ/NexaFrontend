@@ -1,0 +1,28 @@
+<div *ngIf="loading">Cargando cuentas...</div>
+
+<table *ngIf="!loading && accounts.length > 0" class="table table-striped">
+  <thead>
+    <tr>
+      <th># Cuenta</th>
+      <th>Cliente</th>
+      <th>Tipo</th>
+      <th>Tasa Interés</th>
+      <th>Saldo</th>
+      <th>Estatus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let account of accounts">
+      <td>{{ account.numero_cuenta }}</td>
+      <td>{{ account.nombre_cliente }}</td>
+      <td>{{ account.tipo_cuenta }}</td>
+      <td>{{ account.tasa_interes }}%</td>
+      <td>{{ account.saldo }}</td>
+      <td>{{ account.estatus }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && accounts.length === 0">
+  No hay cuentas para mostrar.
+</div>
